@@ -1,5 +1,5 @@
 ﻿Remove-Item –path ./client –recurse
-& java -jar swagger-codegen-cli-2.4.5.jar generate -i https://api.cloudmersive.com/swagger/api/video -l csharp -o client -c packageconfig.json
+& java -jar swagger-codegen-cli-2.4.5.jar generate -i https://api.cloudmersive.com/swagger/api/dataintegration -l csharp -o client -c packageconfig.json
 #(Get-Content ./client/src/api/ConvertDocumentApi.js).replace('var returnType = Object;', "var returnType = 'Blob';") | Set-Content ./client/src/api/ConvertDocumentApi.js
 #(Get-Content ./client/src/api/ConvertWebApi.js).replace('var returnType = Object;', "var returnType = 'Blob';") | Set-Content ./client/src/api/ConvertWebApi.js
 #& npm build ./client
@@ -10,18 +10,18 @@
 
 
 
-$csprojpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.VideoAndMediaServices/Cloudmersive.APIClient.NET.VideoAndMediaServices.csproj
-$csprojtestpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.VideoAndMediaServices.Test/Cloudmersive.APIClient.NET.VideoAndMediaServices.Test.csproj
-$nuspecpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.VideoAndMediaServices/Cloudmersive.APIClient.NET.VideoAndMediaServices.nuspec
-$slnpath = Resolve-Path ./client/Cloudmersive.APIClient.NET.VideoAndMediaServices.sln
+$csprojpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.DataIntegration/Cloudmersive.APIClient.NET.DataIntegration.csproj
+$csprojtestpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.DataIntegration.Test/Cloudmersive.APIClient.NET.DataIntegration.Test.csproj
+$nuspecpath = Resolve-Path ./client/src/Cloudmersive.APIClient.NET.DataIntegration/Cloudmersive.APIClient.NET.DataIntegration.nuspec
+$slnpath = Resolve-Path ./client/Cloudmersive.APIClient.NET.DataIntegration.sln
 
 
-(Get-Content $nuspecpath).replace('<title>Swagger Library</title>', "<title>Cloudmersive Video and Media Services API Client</title>") | Set-Content $nuspecpath
+(Get-Content $nuspecpath).replace('<title>Swagger Library</title>', "<title>Cloudmersive Data Integration API Client</title>") | Set-Content $nuspecpath
 (Get-Content $nuspecpath).replace('<authors>$author$</authors>', "<authors>Cloudmersive</authors>") | Set-Content $nuspecpath
 (Get-Content $nuspecpath).replace('<owners>$author$</owners>', "<owners>Cloudmersive</owners>") | Set-Content $nuspecpath
-(Get-Content $nuspecpath).replace('<description>A library generated from a Swagger doc</description>', "<description>Convert and encode video and media files and content between file formats.  On-demand.</description>") | Set-Content $nuspecpath
+(Get-Content $nuspecpath).replace('<description>A library generated from a Swagger doc</description>', "<description>Easily and directly query database backup files, convert into other file formats.</description>") | Set-Content $nuspecpath
 (Get-Content $nuspecpath).replace('<!-- Authors contain text that appears directly on the gallery -->', "<iconUrl>https://cloudmersive.com/images/cmsdk.png</iconUrl>") | Set-Content $nuspecpath
-(Get-Content $nuspecpath).replace('<dependencies>', "<projectUrl>https://cloudmersive.com/video-and-media-services-api</projectUrl><dependencies>") | Set-Content $nuspecpath
+(Get-Content $nuspecpath).replace('<dependencies>', "<projectUrl>https://cloudmersive.com/data-integration-api</projectUrl><dependencies>") | Set-Content $nuspecpath
 
 
 
@@ -54,8 +54,8 @@ $slnpath = Resolve-Path ./client/Cloudmersive.APIClient.NET.VideoAndMediaService
 
 # Packages.config
 
-(Get-Content '.\client\src\Cloudmersive.APIClient.NET.VideoAndMediaServices\packages.config').replace('<package id="RestSharp" version="105.1.0" targetFramework="net45" developmentDependency="true" />', '<package id="RestSharp" version="106.6.10" targetFramework="net45" developmentDependency="true" />') | Set-Content '.\client\src\Cloudmersive.APIClient.NET.VideoAndMediaServices\packages.config'
-(Get-Content '.\client\src\Cloudmersive.APIClient.NET.VideoAndMediaServices\Client\ApiClient.cs').replace('request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);', 'request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentLength, param.Value.ContentType);') | Set-Content '.\client\src\Cloudmersive.APIClient.NET.VideoAndMediaServices\Client\ApiClient.cs'
+(Get-Content '.\client\src\Cloudmersive.APIClient.NET.DataIntegration\packages.config').replace('<package id="RestSharp" version="105.1.0" targetFramework="net45" developmentDependency="true" />', '<package id="RestSharp" version="106.6.10" targetFramework="net45" developmentDependency="true" />') | Set-Content '.\client\src\Cloudmersive.APIClient.NET.DataIntegration\packages.config'
+(Get-Content '.\client\src\Cloudmersive.APIClient.NET.DataIntegration\Client\ApiClient.cs').replace('request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentType);', 'request.AddFile(param.Value.Name, param.Value.Writer, param.Value.FileName, param.Value.ContentLength, param.Value.ContentType);') | Set-Content '.\client\src\Cloudmersive.APIClient.NET.DataIntegration\Client\ApiClient.cs'
 
 
 
@@ -72,7 +72,7 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe $slnpath /t:rebuild
 
 ./nuget.exe pack $csprojpath
 
-(Get-Content ./client/README.md).replace(' automatically generated by the [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) project', " for the [Cloudmersive Video and Media Services API](https://cloudmersive.com/video-and-media-services-api)") | Set-Content ./client/README.md
+(Get-Content ./client/README.md).replace(' automatically generated by the [Swagger Codegen](https://github.com/swagger-api/swagger-codegen) project', " for the [Cloudmersive Data Integration API](https://cloudmersive.com/data-integration-api)") | Set-Content ./client/README.md
 
 Copy-Item ./client/README.md ./README.md
 
