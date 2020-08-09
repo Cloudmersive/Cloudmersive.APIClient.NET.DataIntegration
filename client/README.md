@@ -1,11 +1,11 @@
-# Cloudmersive.APIClient.NET.DataIntegration - the C# library for the Data Integration API
+# Cloudmersive.APIClient.NET.DataIntegration - the C# library for the dataintegrationapi
 
 Easily and directly query database backup files, convert into other file formats.
 
 This C# SDK is for the [Cloudmersive Data Integration API](https://cloudmersive.com/data-integration-api):
 
 - API version: v1
-- SDK version: 3.0.1
+- SDK version: 3.0.2
 - Build package: io.swagger.codegen.languages.CSharpClientCodegen
 
 <a name="frameworks-supported"></a>
